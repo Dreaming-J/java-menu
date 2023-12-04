@@ -21,6 +21,10 @@ public class HateFood {
         validateHateFood(this.hateFood);
     }
 
+    public boolean hasFood(Food food) {
+        return hateFood.contains(food);
+    }
+
     private List<Food> setHateFood(String hateFood) {
         if (hateFood.isEmpty()) {
             return new ArrayList<>();

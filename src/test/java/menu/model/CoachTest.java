@@ -2,6 +2,8 @@ package menu.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,10 +37,8 @@ public class CoachTest {
     void 추천_음식_저장() {
         Coach coach = new Coach("김수한무");
         coach.createHateFood("스시,피자");
-        assertDoesNotThrow(() -> coach.setMenu("마파두부"));
-        assertThatThrownBy(() -> coach.setMenu("마파두부"))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> coach.setMenu("스시"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertTrue(coach.setDiet(new Food("마파두부")));
+        assertFalse(coach.setDiet(new Food("마파두부")));
+        assertFalse(coach.setDiet(new Food("스시")));
     }
 }
