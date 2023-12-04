@@ -2,6 +2,7 @@ package menu.model;
 
 import static menu.message.ErrorMsg.FOOD_NAME_ERROR;
 import static menu.message.ErrorMsg.SELECT_CATEGORY_ERROR;
+import static menu.util.Constant.COMMA_WITH_SPACE;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,11 +15,15 @@ public enum Menu {
     WESTERN(Category.WESTERN, "라자냐, 그라탱, 뇨끼, 끼슈, 프렌치 토스트, 바게트, 스파게티, 피자, 파니니");
 
     private final Category category;
-    private final List<Food> foods;
+    private final String foods;
 
     Menu(Category category, String foods) {
         this.category = category;
-        this.foods = Stream.of(foods.split(", "))
+        this.foods = foods;
+    }
+
+    private List<Food> getFoodList() {
+        return Stream.of(foods.split(COMMA_WITH_SPACE))
                 .map(Food::new)
                 .toList();
     }
@@ -26,14 +31,14 @@ public enum Menu {
     public static List<Food> from(Category category) {
         return Stream.of(values())
                 .filter(menu -> menu.category == category)
-                .map(menu -> menu.foods)
+                .map(Menu::getFoodList)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(SELECT_CATEGORY_ERROR.toString()));
     }
 
     public static void existsFood(String name) {
         Stream.of(values())
-                .map(menu -> menu.foods.contains(new Food(name)))
+                .map(menu -> menu.foods.contains(name))
                 .filter(bool -> bool)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(FOOD_NAME_ERROR.toString()));
