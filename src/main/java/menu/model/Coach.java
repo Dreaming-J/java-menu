@@ -4,6 +4,7 @@ import static menu.message.ErrorMsg.COACH_NAME_ERROR;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.util.StringGenerator;
 
 public class Coach {
 
@@ -39,6 +40,9 @@ public class Coach {
 
     @Override
     public String toString() {
-        return name;
+        if (diet.isEmpty()) {
+            return name;
+        }
+        return StringGenerator.generate(name, diet);
     }
 }

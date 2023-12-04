@@ -2,10 +2,12 @@ package menu.model;
 
 import static menu.message.ErrorMsg.TEAM_NUMBER_ERROR;
 import static menu.util.Constant.COMMA;
+import static menu.util.Constant.LINE_BREAK;
 
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Team {
@@ -31,5 +33,12 @@ public class Team {
         if (coaches.size() != Set.copyOf(coaches).size()) {
             throw new IllegalArgumentException(TEAM_NUMBER_ERROR.toString());
         }
+    }
+
+    @Override
+    public String toString() {
+        return coaches.stream()
+                .map(Coach::toString)
+                .collect(Collectors.joining(LINE_BREAK));
     }
 }

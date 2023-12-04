@@ -1,29 +1,21 @@
-package menu.model;
+package menu.model.LunchLottery;
 
 import java.util.ArrayList;
 import java.util.List;
+import menu.model.Category;
+import menu.util.StringGenerator;
 
-public class LunchLottery {
+public class RecommendedCategory {
 
     private static final int MAX_CATEGORY_COUNT = 2;
+    private static final String PREFIX_NAME = "카테고리";
     private final List<Category> recommendedCategory;
 
-    public LunchLottery() {
+    public RecommendedCategory() {
         this.recommendedCategory = new ArrayList<>();
     }
 
-    public void drawFood(Coach coach) {
-        Category category = drawCategory();
-
-        while (true) {
-            Food food = Menu.fromRandom(category);
-            if (coach.setDiet(food)) {
-                return;
-            }
-        }
-    }
-
-    private Category drawCategory() {
+    public Category drawCategory() {
         while (true) {
             Category category = Category.fromRandom();
             if (canRecommendCategory(category)) {
@@ -37,5 +29,10 @@ public class LunchLottery {
         return recommendedCategory.stream()
                 .filter(x -> x.equals(category))
                 .count() < MAX_CATEGORY_COUNT;
+    }
+
+    @Override
+    public String toString() {
+        return StringGenerator.generate(PREFIX_NAME, recommendedCategory);
     }
 }
