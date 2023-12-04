@@ -15,7 +15,7 @@ public class HateFood {
     private final List<Food> hateFood;
 
     public HateFood(String hateFood) {
-        this.hateFood = setHateFood(hateFood);
+        this.hateFood = createHateFood(hateFood);
         validateHateFood(this.hateFood);
     }
 
@@ -23,7 +23,7 @@ public class HateFood {
         return hateFood.contains(food);
     }
 
-    private List<Food> setHateFood(String hateFood) {
+    private List<Food> createHateFood(String hateFood) {
         if (hateFood.isEmpty()) {
             return new ArrayList<>();
         }

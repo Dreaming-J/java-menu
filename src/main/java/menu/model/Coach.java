@@ -26,8 +26,8 @@ public class Coach {
         }
     }
 
-    public void createHateFood(String hateFood) {
-        this.hateFood = new HateFood(hateFood);
+    public void setHateFood(HateFood hateFood) {
+        this.hateFood = hateFood;
     }
 
     public boolean setDiet(Food food) {
