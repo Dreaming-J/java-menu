@@ -30,4 +30,15 @@ public class CoachTest {
         assertDoesNotThrow(() -> coach.createHateFood("마파두부"));
         assertDoesNotThrow(() -> coach.createHateFood("마파두부,스시"));
     }
+
+    @Test
+    void 추천_음식_저장() {
+        Coach coach = new Coach("김수한무");
+        coach.createHateFood("스시,피자");
+        assertDoesNotThrow(() -> coach.setMenu("마파두부"));
+        assertThatThrownBy(() -> coach.setMenu("마파두부"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> coach.setMenu("스시"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
