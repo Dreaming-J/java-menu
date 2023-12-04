@@ -4,6 +4,7 @@ import static menu.message.ErrorMsg.FOOD_NAME_ERROR;
 import static menu.message.ErrorMsg.SELECT_CATEGORY_ERROR;
 import static menu.util.Constant.COMMA_WITH_SPACE;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,18 +23,22 @@ public enum Menu {
         this.foods = foods;
     }
 
-    private List<Food> getFoodList() {
+    private List<String> getFoodList() {
         return Stream.of(foods.split(COMMA_WITH_SPACE))
-                .map(Food::new)
                 .toList();
     }
 
-    public static List<Food> from(Category category) {
+    public static List<String> from(Category category) {
         return Stream.of(values())
                 .filter(menu -> menu.category == category)
                 .map(Menu::getFoodList)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(SELECT_CATEGORY_ERROR.toString()));
+    }
+
+    public static Food fromRandom(Category category) {
+        String food = Randoms.shuffle(from(category)).get(0);
+        return new Food(food);
     }
 
     public static void existsFood(String name) {

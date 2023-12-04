@@ -11,8 +11,9 @@ public class MenuTest {
 
     @Test
     void 메뉴_선정_테스트() {
-        assertEquals(Menu.from(Category.from(1)).get(0), new Food("규동"));
-        assertEquals(Menu.from(Category.from(4)).get(5), new Food("똠얌꿍"));
+        assertEquals(Menu.from(Category.from(1)).get(0), "규동");
+        assertEquals(Menu.from(Category.from(4)).get(5), "똠얌꿍");
+        assertEquals(Menu.from(Category.from(3)).get(8), "고추잡채");
     }
 
     @Test

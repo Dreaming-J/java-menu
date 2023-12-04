@@ -12,7 +12,18 @@ public class LunchLottery {
         this.recommendedCategory = new ArrayList<>();
     }
 
-    public Category drawCategory() {
+    public void drawFood(Coach coach) {
+        Category category = drawCategory();
+
+        while (true) {
+            Food food = Menu.fromRandom(category);
+            if (coach.setDiet(food)) {
+                return;
+            }
+        }
+    }
+
+    private Category drawCategory() {
         while (true) {
             Category category = Category.fromRandom();
             if (canRecommendCategory(category)) {
