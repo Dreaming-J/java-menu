@@ -2,7 +2,6 @@ package menu.model;
 
 import static menu.message.ErrorMsg.HATE_FOOD_ERROR;
 import static menu.util.Constant.COMMA;
-import static menu.util.Constant.HATE_FOOD_REGEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,7 @@ import java.util.stream.Stream;
 
 public class HateFood {
 
-    private static final int MAX_INCLUSIVE = 2;
-    private static final int DUPLICATED_NUMBER = 1;
+    private static final String REGEX = "^[가-힣]+(,[가-힣]+)?$";
     private final List<Food> hateFood;
 
     public HateFood(String hateFood) {
@@ -37,13 +35,13 @@ public class HateFood {
     }
 
     private void validateHateFood(String hateFood) {
-        if (!Pattern.matches(HATE_FOOD_REGEX, hateFood)) {
+        if (!Pattern.matches(REGEX, hateFood)) {
             throw new IllegalArgumentException(HATE_FOOD_ERROR.toString());
         }
     }
 
     private void validateHateFood(List<Food> hateFood) {
-        if (hateFood.size() == MAX_INCLUSIVE & Set.copyOf(hateFood).size() == DUPLICATED_NUMBER) {
+        if (hateFood.size() != Set.copyOf(hateFood).size()) {
             throw new IllegalArgumentException(HATE_FOOD_ERROR.toString());
         }
     }
