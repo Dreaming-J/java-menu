@@ -8,6 +8,10 @@ import menu.model.Team;
 
 public class OutputView {
 
+    public static void printError(String error) {
+        System.out.printf("[ERROR] %s%n", error);
+    }
+
     public void printServiceStart() {
         System.out.println(PRINT_SERVICE_START);
     }
