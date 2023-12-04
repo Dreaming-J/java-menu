@@ -18,4 +18,8 @@ public class Coach {
             throw new IllegalArgumentException(COACH_NAME_ERROR.toString());
         }
     }
+
+    public void setHateFood(String hateFood) {
+        
+    }
 }
