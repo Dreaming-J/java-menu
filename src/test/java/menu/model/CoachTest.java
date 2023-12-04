@@ -14,5 +14,6 @@ public class CoachTest {
         assertThatThrownBy(() -> new Coach("김수한무두"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertDoesNotThrow(() -> new Coach("김수한무"));
+        assertDoesNotThrow(() -> new Coach("김수"));
     }
 }
