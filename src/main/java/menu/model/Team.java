@@ -35,6 +35,10 @@ public class Team {
         }
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     @Override
     public String toString() {
         return coaches.stream()
