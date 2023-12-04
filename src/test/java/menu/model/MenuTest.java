@@ -1,5 +1,7 @@
 package menu.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
@@ -19,5 +21,12 @@ public class MenuTest {
                 .forEach(category -> {
                     System.out.println(Menu.from(category));
                 });
+    }
+
+    @Test
+    void 메뉴_유무_확인_테스트() {
+        assertThatThrownBy(() -> Menu.existsFood("김수한무"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertDoesNotThrow(() -> Menu.existsFood("떡볶이"));
     }
 }
