@@ -1,5 +1,6 @@
 package menu.model;
 
+import static menu.message.ErrorMsg.FOOD_NAME_ERROR;
 import static menu.message.ErrorMsg.SELECT_CATEGORY_ERROR;
 
 import java.util.List;
@@ -28,5 +29,13 @@ public enum Menu {
                 .map(menu -> menu.foods)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(SELECT_CATEGORY_ERROR.toString()));
+    }
+
+    public static void existsFood(String name) {
+        Stream.of(values())
+                .map(menu -> menu.foods.contains(new Food(name)))
+                .filter(bool -> bool)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(FOOD_NAME_ERROR.toString()));
     }
 }
