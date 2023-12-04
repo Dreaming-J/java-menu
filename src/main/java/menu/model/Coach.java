@@ -36,4 +36,9 @@ public class Coach {
         diet.add(food);
         return true;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
