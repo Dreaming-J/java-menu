@@ -17,7 +17,7 @@ public enum Category {
         this.number = number;
     }
 
-    public static Category get(int number) {
+    public static Category from(int number) {
         return Stream.of(values())
                 .filter(category -> category.number == number)
                 .findFirst()

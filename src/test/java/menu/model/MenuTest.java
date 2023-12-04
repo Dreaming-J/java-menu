@@ -1,0 +1,23 @@
+package menu.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+
+public class MenuTest {
+
+    @Test
+    void 메뉴_선정_테스트() {
+        assertEquals(Menu.from(Category.from(1)).get(0), new Food("규동"));
+        assertEquals(Menu.from(Category.from(4)).get(5), new Food("똠얌꿍"));
+    }
+
+    @Test
+    void 메뉴_출력_확인용_테스트() {
+        Stream.of(Category.values())
+                .forEach(category -> {
+                    System.out.println(Menu.from(category));
+                });
+    }
+}
