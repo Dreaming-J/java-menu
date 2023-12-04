@@ -1,18 +1,26 @@
-package menu.model.LunchLottery;
+package menu.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import menu.model.Category;
 import menu.util.StringGenerator;
 
-public class RecommendedCategory {
+public class LunchLottery {
 
     private static final int MAX_CATEGORY_COUNT = 2;
     private static final String PREFIX_NAME = "카테고리";
     private final List<Category> recommendedCategory;
 
-    public RecommendedCategory() {
+    public LunchLottery() {
         this.recommendedCategory = new ArrayList<>();
+    }
+
+    public void drawFood(Category category, Coach coach) {
+        while (true) {
+            Food food = Menu.fromRandom(category);
+            if (coach.setDiet(food)) {
+                return;
+            }
+        }
     }
 
     public Category drawCategory() {
