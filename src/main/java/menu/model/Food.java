@@ -9,4 +9,9 @@ public record Food(String name) {
     private void validate(String name) {
         Menu.existsFood(name);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
