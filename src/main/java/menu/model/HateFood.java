@@ -15,6 +15,7 @@ public class HateFood {
     private final List<Food> hateFood;
 
     public HateFood(String hateFood) {
+        validateHateFood(hateFood);
         this.hateFood = createHateFood(hateFood);
         validateHateFood(this.hateFood);
     }
@@ -28,14 +29,13 @@ public class HateFood {
             return new ArrayList<>();
         }
 
-        validateHateFood(hateFood);
         return Stream.of(hateFood.split(COMMA))
                 .map(Food::new)
                 .toList();
     }
 
     private void validateHateFood(String hateFood) {
-        if (!Pattern.matches(REGEX, hateFood)) {
+        if (!hateFood.isEmpty() && !Pattern.matches(REGEX, hateFood)) {
             throw new IllegalArgumentException(HATE_FOOD_ERROR.toString());
         }
     }

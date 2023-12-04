@@ -11,8 +11,7 @@ public enum ViewMsg {
             %s
             %s
                         
-            추천을 완료했습니다.
-            """);
+            추천을 완료했습니다.""");
 
     private final String message;
 
